@@ -1,20 +1,19 @@
 import React, { useContext } from "react";
 import "./LoginSingup.css";
-import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
-
-import { useState } from "react";
-import { Login } from "../../ApiConfig/FirebaseConfig";
 import { GlobalContext } from "../../Context/GlobalContext";
+import authService from '../../Service/AuthService';
 
-function LoginSingUp() {
+const Login = () => {
   const { loginState, setLoginState } = useContext(GlobalContext);
   const { isLogin, loginEmail, loginPassword } = loginState;
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
-    const user = await Login(loginEmail, loginPassword);
-    console.log(user);
+    const user = await authService.login(loginEmail, loginPassword);
+    if (user) {
+      window.location.replace('/');
+    }
   };
 
   return (
@@ -50,7 +49,7 @@ function LoginSingUp() {
                 onChange={(e) => {
                   setLoginState((prev) => ({
                     ...prev,
-                    loginEmail: e.target.value,
+                    loginPassword: e.target.value,
                   }));
                 }}
               />
@@ -70,18 +69,4 @@ function LoginSingUp() {
   );
 }
 
-export default LoginSingUp;
-
-{
-  /* <NavLink
-className="link"
-to="Home"
-onClick={() => {
-  setIsOpen(isOpen === "open" ? "closed" : "open");
-  setIsClosed(isOpen === "closed" ? "open" : "closed");
-  setLoginSingup(loginSingup === true ? false : true);
-}}
->
-{loginSingup === true ? <p>Login</p> : <p>Singup</p>}
-</NavLink> */
-}
+export default Login;

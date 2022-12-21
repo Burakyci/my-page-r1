@@ -7,8 +7,8 @@ export const ContextProvider = (props) => {
 
   const [loginState, setLoginState] = useState({
     isLogin: false,
-    loginEmail: "",
-    loginPassword: "",
+    loginEmail: "deneme@deneme.com",
+    loginPassword: "123456",
   });
   const [singupState, setSingupState] = useState({
     isSingup: false,

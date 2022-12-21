@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
-import { NavLink, Route, Routes, Outlet } from "react-router-dom";
-
-import Home from "../Pages/Home";
-import Game from "../Pages/Game";
-import Weather from "../Pages/Weather";
-import Users from "../Pages/Users";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { GlobalContext } from "../Context/GlobalContext";
 import DarkLight from "./DarkLight";
-import Page404Found from "../Pages/Page404Found";
-import UsersDetail from "../Pages/UsersDetail";
-import Contact from "../Pages/Contact";
+import authService from "../Service/AuthService";
 
 function Header() {
   const { theme, setTheme } = useContext(GlobalContext);
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.pathname.toLowerCase().includes('login')) {
+      window.location.replace('/')
+    }
+  }, []);
 
   return (
     <div className={theme}>
@@ -39,6 +39,10 @@ function Header() {
       <NavLink className="link" to={-1}>
         Back
       </NavLink>
+      <button onClick={async () => {
+        await authService.logout();
+        window.location.replace('/');
+      }}>Logout</button>
       {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Game" element={<Game />} />

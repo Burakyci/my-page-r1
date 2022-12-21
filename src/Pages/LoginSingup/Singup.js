@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
 import "./LoginSingup.css";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
-
-import { useState } from "react";
 import { Register } from "../../ApiConfig/FirebaseConfig";
 import { GlobalContext } from "../../Context/GlobalContext";
+import authService from "../../Service/AuthService";
 
-function LoginSingUp() {
+function SingUp() {
   const { singupState, setSingupState } = useContext(GlobalContext);
   const { isSingup, singupEmail, singupPassword } = singupState;
 
@@ -17,7 +16,7 @@ function LoginSingUp() {
       ...prev,
       isSingup: false,
     }));
-    const user = await Register(singupEmail, singupPassword);
+    const user = await authService.register(singupEmail, singupPassword);
     setSingupState((prev) => ({
       ...prev,
       isSingup: true,
@@ -84,7 +83,7 @@ function LoginSingUp() {
   );
 }
 
-export default LoginSingUp;
+export default SingUp;
 
 {
   /* <NavLink
