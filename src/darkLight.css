@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+  background-color: black;
+
+  /* vertical-align: baseline; */
+  font-weight: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  /* border: 0 none; */
+  outline: 0;
+  padding: 0;
+  margin: 0;
+}
+textarea {
+  margin: 10px;
+}
+input,
+textarea {
+  border-radius: 7px;
+
+  border: #ffffff 1px solid;
+  color: #ffffff;
+}
+
+span {
+  color: red;
+}
+
+label,
+pre,
+p,
+a,
+strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  color: white;
+}
+
+button {
+  border-color: white;
+  cursor: pointer;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.darkLightMode {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Euclid Circular A";
+}
+
+body > div > div {
+  flex: 0 0 120px;
+  text-align: center;
+}
+
+.switch {
+  display: inline-block;
+}
+
+.switch input {
+  display: none;
+}
+
+.switch label {
+  display: block;
+  width: 60px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 15px;
+  border: 2px solid #7e8382;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.switch label::after {
+  content: "";
+  display: inherit;
+  width: 20px;
+  height: 20px;
+  border-radius: 12px;
+  background: gray;
+  background-image: url(./İcon/moon-regular.svg);
+  transition: 0.3s;
+}
+
+.switch input:checked ~ label {
+  border-color: #a3ff03;
+}
+
+.switch input:checked ~ label::after {
+  translate: 30px 0;
+  background: yellow;
+  background-image: url(./İcon/sun-solid.svg);
+}
+
+.switch input:disabled ~ label {
+  opacity: 0.5;
+  /* cursor: not-allowed; */
+}
+
+.switch.square label,
+.switch.square label::after {
+  border-radius: 0;
+}
+
+ul li {
+  font-style: none;
+}
+
+a {
+  font-style: none;
+}
