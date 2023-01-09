@@ -28,26 +28,20 @@ function App() {
   return (
     <div>
       <ContextProvider>
-        {loading == true ? (
-          <>
+        {
+          loading == true ? (
             <Routes>
               <Route path="/" element={<Loading />} />
             </Routes>
-          </>
-        ) : (
-          <>
-            {user === null ? (
-              <>
-                <Routes>
+          ) : (
+            <Routes>
+              {
+                user === null ? (
                   <Route path="/" element={<AuthLayout />}>
                     <Route path="signup" element={<Singup />} />
                     <Route index={true} element={<Login />} />
                   </Route>
-                </Routes>
-              </>
-            ) : (
-              <>
-                <Routes>
+                ) : (
                   <Route path="/" element={<Header />}>
                     <Route index={true} element={<Home />} />
                     <Route path="weather" element={<Weather />} />
@@ -62,11 +56,9 @@ function App() {
                       <Route path="UpdateProfil" element={<UpdateProfil />} />
                     </Route>
                   </Route>
-                </Routes>
-              </>
-            )}
-          </>
-        )}
+                )}
+            </Routes>
+          )}
       </ContextProvider>
     </div>
   );
