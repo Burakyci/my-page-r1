@@ -8,7 +8,7 @@ export const AuthContext = createContext();
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState(fireAuth.currentUser);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [loginState, setLoginState] = useState({
     isLogin: false,
