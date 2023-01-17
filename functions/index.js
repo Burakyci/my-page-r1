@@ -31,19 +31,25 @@ exports.sendEmail = functions.https.onRequest((request, response) => {
       transporter.sendMail(options, function (error, data) {
         if (error)
           response.send({
-            success: false,
-            message: error.message,
+            data: {
+              success: false,
+              message: error.message,
+            }
           });
 
         response.send({
-          success: true,
-          message: "we have received your message",
+          data: {
+            success: true,
+            message: "we have received your message",
+          }
         });
       });
     } catch (error) {
       response.send({
-        success: false,
-        message: error.message,
+        data: {
+          success: false,
+          message: error.message,
+        }
       });
     }
   });
