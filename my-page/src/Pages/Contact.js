@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
-// import { fireFunctions } from "../ApiConfig/FirebaseConfig";
+import { fireFunctions } from "../ApiConfig/FirebaseConfig";
 import { httpsCallable } from "firebase/functions";
 
 // TODO: implement yup package for validation
@@ -19,7 +19,7 @@ function Contact() {
           data: formik.values,
         };
         // formik.validateForm(data)
-        const call = httpsCallable("sendEmail");
+        const call = httpsCallable(fireFunctions, "sendEmail");
         const res = await call(mailData);
         if (res && res.data) {
           if (res.data.success) {
