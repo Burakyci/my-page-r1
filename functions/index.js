@@ -11,6 +11,7 @@ const handler = (request, response) => {
 exports.helloWorld = functions.https.onRequest(handler);
 
 exports.sendEmail = functions.https.onRequest((request, response) => {
+  const data = request.body.data;
   try {
     const transporter = nodeMailer.createTransport({
       service: "gmail",
@@ -27,18 +28,18 @@ exports.sendEmail = functions.https.onRequest((request, response) => {
     };
     transporter.sendMail(options, function (error, data) {
       if (error)
-        res.send({
+        response.send({
           success: false,
           message: error.message,
         });
 
-      res.send({
+      response.send({
         success: true,
         message: "we have received your message",
       });
     });
   } catch (error) {
-    res.send({
+    response.send({
       success: false,
       message: error.message,
     });
