@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { WeatherConpService } from "../Service/WeatherService";
 import { usePosition } from "use-position";
 import { GlobalContext } from "../Context/GlobalContext";
+import Loading from "../Pages/Loading";
 
 function WeatherConp() {
   const watch = true;
@@ -63,7 +64,7 @@ function WeatherConp() {
           )}
         </>
       ) : (
-        <p>Loading....</p>
+        <Loading />
       )}
     </div>
   );

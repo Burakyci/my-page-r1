@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../Context/GlobalContext";
+
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // import {
@@ -11,11 +12,12 @@ import { GlobalContext } from "../Context/GlobalContext";
 
 import WeatherConp from "../Conponents/WeatherConp";
 import { fireAuth } from "../ApiConfig/FirebaseConfig";
+import Loading from "./Loading";
 
 function Home() {
   React.useEffect(() => {
     if (!fireAuth.currentUser) {
-      window.location.replace('/login');
+      window.location.replace("/login");
     }
   }, [fireAuth.currentUser]);
 
@@ -38,6 +40,7 @@ function Home() {
             <FontAwesomeIcon className="icon twitter" icon={faTwitter} />
           </a>
         </div> */}
+
         <WeatherConp />
       </div>
     </div>

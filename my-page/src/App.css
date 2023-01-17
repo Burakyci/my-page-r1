@@ -154,3 +154,25 @@
 .profilPhoto {
   height: 100px;
 }
+.loading {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 10px solid blue;
+  border-top: 10px solid rgb(255, 255, 255);
+  border-bottom: 10px solid rgb(255, 255, 255);
+}
+.loadingTwo {
+  margin: 35px;
+  height: 35px;
+  width: 35px;
+  background-color: black;
+  border: solid 5px;
+  border-radius: 100%;
+  border-style: groove;
+  border-right: 10px black;
+  border-left: 10px black;
+  border-bottom: 10px black;
+  border-top: 10px black;
+  box-shadow: 6px 6px 6px 6px grey;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 // TODO: implement yup package for validation
 
@@ -15,18 +15,23 @@ function Contact() {
     },
     onSubmit: async (values) => {
       try {
+        alert(JSON.stringify(values, null, 2));
         const mailData = {
-          data: formik.values
+          data: formik.values,
         };
 
         // formik.validateForm(data)
         // TODO: check validation
-        const url = 'localhost:8000/sendmail';
-        const res = await axios.post(url, { mailData }, {
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8',
+        const url = "localhost:8000/sendmail";
+        const res = await axios.post(
+          url,
+          { mailData },
+          {
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
           }
-        });
+        );
         if (res.status === 200) {
           alert(res.data);
         } else {

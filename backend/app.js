@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 const app = express();
 const router = express.Router();
 const nodeMailler = require("nodemailer");
@@ -15,7 +15,7 @@ router.post("/sendmail", (req, res) => {
   if (!data.email)
     res.send({
       success: false,
-      message: 'no email provided'
+      message: "no email provided",
     });
 
   let transporter = nodeMailler.createTransport({
@@ -29,18 +29,18 @@ router.post("/sendmail", (req, res) => {
     from: "burakkalayci6718@gmail.com",
     to: `${data.email}`,
     subject: `Message from ${data.name} ${data.surName}`,
-    html: `<p>${data.message}</p>`
+    html: `<p>${data.message}</p>`,
   };
   transporter.sendMail(options, function (error, data) {
     if (error)
       res.send({
         success: false,
-        message: error.message
+        message: error.message,
       });
 
     res.send({
       success: true,
-      message: 'we have received your message'
+      message: "we have received your message",
     });
   });
 });
