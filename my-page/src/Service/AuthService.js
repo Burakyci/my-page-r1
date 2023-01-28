@@ -4,38 +4,37 @@ import {
   signOut,
   sendEmailVerification,
   updateProfile,
-  updateEmail,
-  FacebookAuthProvider,
 } from "firebase/auth";
 import { fireAuth } from "../ApiConfig/FirebaseConfig";
 
 export class AuthService {
   register = async (email, password) => {
     try {
-      const { user } = await createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         fireAuth,
         email,
         password
       );
-      return user;
+      return {
+        success: true,
+      };
     } catch (error) {
-      console.log(error);
-      alert(error.message);
+      return {
+        success: false,
+        message: error.message,
+      };
     }
   };
 
   login = async (email, password) => {
     try {
-      const { user } = await signInWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         fireAuth,
         email,
         password
       );
-      return user;
     } catch (error) {
       alert(error.message);
-      console.log(error);
-      console.log(typeof error);
     }
   };
 
@@ -43,7 +42,7 @@ export class AuthService {
     try {
       await signOut(fireAuth);
       return true;
-    } catch (error) {}
+    } catch (error) { }
   };
 
   verification = async () => {

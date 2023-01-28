@@ -4,7 +4,6 @@ import { GlobalContext } from "../Context/GlobalContext";
 import DarkLight from "./DarkLight";
 import authService from "../Service/AuthService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AuthContext } from "../Context/AuthContext";
 
 import {
   faFacebook,
@@ -15,7 +14,6 @@ import {
 
 function Header() {
   const navi = useNavigate();
-  const { setLoading } = useContext(AuthContext);
   const { theme, setTheme } = useContext(GlobalContext);
   const location = useLocation();
 
@@ -73,7 +71,6 @@ function Header() {
       <button
         onClick={async () => {
           await authService.logout();
-
           navi("/");
         }}
       >

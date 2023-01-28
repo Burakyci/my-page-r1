@@ -1,26 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./LoginSingup.css";
 import { NavLink } from "react-router-dom";
-import { GlobalContext } from "../../Context/GlobalContext";
-import { AuthContext } from "../../Context/AuthContext";
+import authService from "../../Service/AuthService";
+// import { GlobalContext } from "../../Context/GlobalContext";
+// import { AuthContext } from "../../Context/AuthContext";
 
 const Login = () => {
-  const { loginState, setLoginState, AuthService } = useContext(AuthContext);
-  const { isLogin, loginEmail, loginPassword } = loginState;
-  const a = AuthService.verification();
+  const [loginState, setLoginState] = React.useState({
+    loginEmail: '',
+    loginPassword: ''
+  });
+  const { loginEmail, loginPassword } = loginState;
+  const a = authService.verification();
   console.log(a);
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
-    setLoginState((prev) => ({
-      ...prev,
-      isLogin: false,
-    }));
-    const user = await AuthService.login(loginEmail, loginPassword);
-    setLoginState((prev) => ({
-      ...prev,
-      isLogin: true,
-    }));
+    await authService.login(loginEmail, loginPassword);
   };
 
   return (

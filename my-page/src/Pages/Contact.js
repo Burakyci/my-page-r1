@@ -8,10 +8,10 @@ import { httpsCallable } from "firebase/functions";
 function Contact() {
   const formik = useFormik({
     initialValues: {
-      name: "",
-      surName: "",
-      email: "",
-      message: "",
+      name: "test",
+      surName: "user",
+      email: "gltknky@gmail.com",
+      message: "test message",
     },
     onSubmit: async (values) => {
       try {
@@ -37,6 +37,26 @@ function Contact() {
   });
   return (
     <div>
+      <button onClick={async () => {
+        const call = httpsCallable(fireFunctions, "sendTestEmail2");
+        const res = await call({
+          data: {
+            name: "test",
+            surName: "user",
+            email: "gltknky@gmail.com",
+            message: "test message",
+          }
+        });
+        if (res && res.data) {
+          if (res.data.success) {
+            alert(res.data.message)
+          } else {
+            alert(res.data.message)
+          }
+        } else {
+          alert(res.statusText);
+        }
+      }}>Send</button>
       <form onSubmit={formik.handleSubmit}>
         <div>
           <label className="m-7" htmlFor="name">

@@ -17,10 +17,21 @@ import AuthLayout from "./Pages/AuthLayout";
 import MyPage from "./Pages/Profil/MyPage";
 import UpdateProfil from "./Pages/Profil/UpdateProfil";
 import ProfilDashboard from "./Pages/Profil/ProfilDashboard";
+import { useDispatch, useSelector } from 'react-redux';
+import { fireAuth } from './ApiConfig/FirebaseConfig';
+import { updateAuth } from './Redux/actions';
 
 
 export default function AppRouter() {
-  const { user, loading, setLoading } = React.useContext(AuthContext);
+  const { user, loading } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    fireAuth.onAuthStateChanged((user) => {
+      const action = updateAuth(user);
+      dispatch(action);
+    });
+  }, []);
+
   return (
     <BrowserRouter>
       {
